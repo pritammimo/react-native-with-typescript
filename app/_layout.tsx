@@ -2,7 +2,9 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -37,13 +39,20 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav />;
+  return (
+   <SafeAreaProvider>
+    <RootLayoutNav />
+    <StatusBar style="auto" />
+   </SafeAreaProvider>
+  )
+  ;
 }
 
 function RootLayoutNav() {
 
   return (
       <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }}  />
       </Stack>
   );
 }
